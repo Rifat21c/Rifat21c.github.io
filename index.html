@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of MD. Rifat Zaman Khan, a software developer in Dhaka focused on full-stack web development, accessibility, UX, and emerging technology.">
+  <meta name="theme-color" content="#05070d">
+  <title>MD. Rifat Zaman Khan - Software Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Archivo", "Inter", "system-ui", "sans-serif"],
+            display: ["Space Grotesk", "Archivo", "system-ui", "sans-serif"],
+            mono: ["JetBrains Mono", "Consolas", "monospace"]
+          },
+          colors: {
+            void: "#05070d",
+            panel: "#0b1020",
+            cyan: "#4de3ff",
+            lime: "#bbff6a",
+            ember: "#ff6b4a",
+            paper: "#f8fbff"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+    :root {
+      color-scheme: dark;
+      --line: rgba(77, 227, 255, 0.2);
+      --line-strong: rgba(77, 227, 255, 0.48);
+      --glass: rgba(8, 13, 28, 0.76);
+      --glass-soft: rgba(248, 251, 255, 0.055);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 12%, rgba(77, 227, 255, 0.12), transparent 24rem),
+        radial-gradient(circle at 78% 30%, rgba(187, 255, 106, 0.08), transparent 22rem),
+        linear-gradient(180deg, #05070d 0%, #080b12 48%, #05070d 100%);
+      color: #f8fbff;
+      font-family: "Archivo", system-ui, sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(77, 227, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77, 227, 255, 0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 92%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent, rgba(5, 7, 13, 0.42));
+    }
+
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hud-panel {
+      position: relative;
+      background: linear-gradient(145deg, rgba(9, 14, 30, 0.88), rgba(11, 16, 32, 0.55));
+      border: 1px solid rgba(77, 227, 255, 0.2);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+    }
+
+    .hud-panel::before,
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, var(--line-strong) 0 34px, transparent 34px calc(100% - 34px), var(--line-strong) calc(100% - 34px)),
+        linear-gradient(90deg, var(--line-strong) 0 34px, transparent 34px calc(100% - 34px), var(--line-strong) calc(100% - 34px));
+      background-size: 100% 1px;
+      background-position: top left, bottom left;
+      background-repeat: no-repeat;
+      opacity: 0.7;
+    }
+
+    .project-card {
+      position: relative;
+      min-height: 100%;
+      background: rgba(8, 13, 28, 0.7);
+      border: 1px solid rgba(248, 251, 255, 0.1);
+      transition: border-color 240ms ease, background 240ms ease, transform 240ms ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(77, 227, 255, 0.42);
+      background: rgba(12, 19, 40, 0.86);
+    }
+
+    .signal-line {
+      position: absolute;
+      inset: 12% auto 10% 50%;
+      width: 1px;
+      overflow: hidden;
+      background: rgba(77, 227, 255, 0.12);
+    }
+
+    .signal-line::after {
+      content: "";
+      position: absolute;
+      inset: -35% 0 auto;
+      height: 35%;
+      background: linear-gradient(180deg, transparent, #4de3ff, transparent);
+      animation: scan 4.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    }
+
+    .portrait-frame {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      isolation: isolate;
+    }
+
+    .portrait-frame::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      z-index: -1;
+      border: 1px solid rgba(187, 255, 106, 0.28);
+      transform: rotate(-2deg);
+    }
+
+    .portrait-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(5, 7, 13, 0.05) 46%, rgba(5, 7, 13, 0.68) 100%),
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 7px);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      opacity: 0.42;
+    }
+
+    .ticker {
+      animation: ticker 24s linear infinite;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .magnetic-link {
+      transition: border-color 220ms ease, color 220ms ease, background 220ms ease;
+    }
+
+    .magnetic-link:hover {
+      border-color: rgba(77, 227, 255, 0.5);
+      color: #4de3ff;
+      background: rgba(77, 227, 255, 0.08);
+    }
+
+    .skill-chip {
+      border: 1px solid rgba(248, 251, 255, 0.12);
+      background: rgba(248, 251, 255, 0.06);
+    }
+
+    @keyframes scan {
+      0% { transform: translateY(-20%); opacity: 0; }
+      14% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { transform: translateY(360%); opacity: 0; }
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-cyan/25 selection:text-paper">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-paper focus:px-4 focus:py-2 focus:text-void">Skip to content</a>
+
+  <header class="fixed left-0 right-0 top-0 z-40 px-3 pt-3 sm:px-5">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between rounded-lg border border-white/10 bg-void/78 px-3 py-2 text-xs uppercase tracking-[0.18em] text-white/68 backdrop-blur-xl">
+      <a href="#top" class="flex items-center gap-2 rounded-md px-2 py-2 font-mono text-white outline-none transition-colors hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan">
+        <span class="h-2 w-2 rounded-full bg-lime shadow-[0_0_18px_rgba(187,255,106,0.75)]"></span>
+        RZK
+      </a>
+      <div class="hidden items-center gap-1 md:flex">
+        <a class="magnetic-link rounded-md border border-transparent px-3 py-2 outline-none focus-visible:ring-2 focus-visible:ring-cyan" href="#work">Work</a>
+        <a class="magnetic-link rounded-md border border-transparent px-3 py-2 outline-none focus-visible:ring-2 focus-visible:ring-cyan" href="#stack">Stack</a>
+        <a class="magnetic-link rounded-md border border-transparent px-3 py-2 outline-none focus-visible:ring-2 focus-visible:ring-cyan" href="#experience">Experience</a>
+        <a class="magnetic-link rounded-md border border-transparent px-3 py-2 outline-none focus-visible:ring-2 focus-visible:ring-cyan" href="#contact">Contact</a>
+      </div>
+      <a href="assets/MD_Rifat_Zaman_Khan_CV.pdf" class="inline-flex items-center gap-2 rounded-md border border-cyan/30 px-3 py-2 text-white outline-none transition-colors hover:bg-cyan/10 hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan" download>
+        <i data-lucide="download" class="h-4 w-4"></i>
+        <span class="hidden sm:inline">CV</span>
+      </a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="top" class="relative mx-auto flex min-h-[94svh] max-w-7xl flex-col justify-center px-5 pb-16 pt-28 sm:px-8 lg:px-10">
+      <div class="signal-line hidden lg:block"></div>
+      <div class="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+        <div class="reveal max-w-4xl">
+          <p class="mb-5 inline-flex items-center gap-3 rounded-full border border-cyan/20 bg-cyan/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.22em] text-cyan">
+            <span class="h-1.5 w-1.5 rounded-full bg-cyan"></span>
+            Dhaka based software developer
+          </p>
+          <h1 class="font-display text-[clamp(3.3rem,9vw,8.5rem)] font-semibold leading-[0.86] tracking-[-0.03em] text-paper">
+            MD. Rifat<br>
+            <span class="text-transparent [-webkit-text-stroke:1px_rgba(248,251,255,0.72)]">Zaman Khan</span>
+          </h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
+            I build full-stack web products where engineering clarity meets accessible, user-centered interfaces - from campus publishing systems to assistive browser tooling and sustainability platforms.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="#work" class="inline-flex cursor-pointer items-center gap-2 rounded-md bg-paper px-5 py-3 text-sm font-semibold text-void outline-none transition-colors hover:bg-cyan focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-void">
+              View selected systems
+              <i data-lucide="arrow-down-right" class="h-4 w-4"></i>
+            </a>
+            <a href="mailto:ra269432@gmail.com" class="inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/14 px-5 py-3 text-sm font-semibold text-white outline-none transition-colors hover:border-lime/50 hover:bg-lime/10 hover:text-lime focus-visible:ring-2 focus-visible:ring-lime">
+              Start a conversation
+              <i data-lucide="send" class="h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <aside class="reveal hud-panel rounded-lg p-4" aria-label="Profile snapshot">
+          <div class="portrait-frame overflow-hidden rounded-md border border-white/10 bg-panel">
+            <img src="assets/rifat-avatar.png" alt="Portrait of MD. Rifat Zaman Khan" class="h-full w-full object-cover" width="460" height="575">
+            <div class="absolute bottom-0 left-0 right-0 p-5">
+              <div class="rounded-md border border-white/10 bg-void/70 p-4 backdrop-blur">
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan">Signal profile</p>
+                <p class="mt-2 text-sm leading-6 text-white/76">Full-stack development, accessibility engineering, AI/ML exploration, and communication-driven project coordination.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-3 gap-2 text-center font-mono text-xs uppercase tracking-[0.12em] text-white/60">
+            <div class="rounded-md border border-white/10 bg-white/[0.04] p-3"><span class="block text-lg font-bold text-paper">2026</span>CS Grad</div>
+            <div class="rounded-md border border-white/10 bg-white/[0.04] p-3"><span class="block text-lg font-bold text-paper">7</span>Core Builds</div>
+            <div class="rounded-md border border-white/10 bg-white/[0.04] p-3"><span class="block text-lg font-bold text-paper">AA</span>UX Bias</div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="absolute bottom-4 left-0 right-0 overflow-hidden border-y border-white/10 bg-white/[0.03] py-3 font-mono text-xs uppercase tracking-[0.22em] text-white/48">
+        <div class="ticker flex w-max gap-8 whitespace-nowrap">
+          <span>Next.js</span><span>TypeScript</span><span>React</span><span>Node.js</span><span>PostgreSQL</span><span>Tailwind CSS</span><span>FastAPI</span><span>Accessibility</span>
+          <span>Next.js</span><span>TypeScript</span><span>React</span><span>Node.js</span><span>PostgreSQL</span><span>Tailwind CSS</span><span>FastAPI</span><span>Accessibility</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="border-t border-white/10 px-5 py-24 sm:px-8 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.28em] text-lime">Selected systems</p>
+            <h2 class="mt-4 max-w-3xl font-display text-4xl font-semibold tracking-[-0.03em] text-paper sm:text-6xl">Projects with useful constraints, not decorative ambition.</h2>
+          </div>
+          <p class="max-w-md text-sm leading-7 text-white/62">Repo metadata and README details are folded into the cards where public code is available. GreenShield appears private or moved, so its description follows the CV.</p>
+        </div>
+
+        <div class="mt-12 grid gap-4 md:grid-cols-2">
+          <article class="project-card reveal rounded-lg p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan">01 - Publishing system</p>
+                <h3 class="mt-4 font-display text-3xl font-semibold text-paper">IUB News Portal</h3>
+              </div>
+              <i data-lucide="newspaper" class="h-6 w-6 text-cyan"></i>
+            </div>
+            <p class="mt-5 text-sm leading-7 text-white/66">A campus news platform shaped around publishing, moderation, profiles, search, bookmarks, comments, and admin workflows. The public repository exposes a PHP/CSS/JavaScript implementation; the CV frames the product direction around Next.js, Supabase, PostgreSQL, and Tailwind CSS.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Content management</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Admin dashboard</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Search and bookmarks</span>
+            </div>
+            <a href="https://github.com/Rifat21c/webnewsportal" target="_blank" rel="noreferrer" class="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/12 px-4 py-2 text-sm font-semibold text-white outline-none transition-colors hover:border-cyan/50 hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan">
+              View repository
+              <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+            </a>
+          </article>
+
+          <article class="project-card reveal rounded-lg p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-lime">02 - Accessibility tooling</p>
+                <h3 class="mt-4 font-display text-3xl font-semibold text-paper">Senior Mode Extension</h3>
+              </div>
+              <i data-lucide="accessibility" class="h-6 w-6 text-lime"></i>
+            </div>
+            <p class="mt-5 text-sm leading-7 text-white/66">A WXT, React, TypeScript, and Vite browser extension for older adults and visually impaired users. It adds high contrast mode, granular text scaling from 100% to 200%, link highlighting, a permission toast, and a dynamic enabled/disabled icon state.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">WXT</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">DOM manipulation</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Vitest and Playwright</span>
+            </div>
+            <a href="https://github.com/Taif6612/senior-mode-extension" target="_blank" rel="noreferrer" class="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/12 px-4 py-2 text-sm font-semibold text-white outline-none transition-colors hover:border-lime/50 hover:text-lime focus-visible:ring-2 focus-visible:ring-lime">
+              View repository
+              <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+            </a>
+          </article>
+
+          <article class="project-card reveal rounded-lg p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan">03 - Carbon intelligence</p>
+                <h3 class="mt-4 font-display text-3xl font-semibold text-paper">Zero Print</h3>
+              </div>
+              <i data-lucide="leaf" class="h-6 w-6 text-cyan"></i>
+            </div>
+            <p class="mt-5 text-sm leading-7 text-white/66">A sustainability platform for monitoring and reducing digital carbon footprint. The public codebase points to FastAPI, SQLAlchemy, Jinja2 templates, Google API integrations, feed parsing, and database-backed challenge tracking.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">FastAPI</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">SQLAlchemy</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">AI analytics</span>
+            </div>
+            <a href="https://github.com/Rifat21c/zeroprint" target="_blank" rel="noreferrer" class="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/12 px-4 py-2 text-sm font-semibold text-white outline-none transition-colors hover:border-cyan/50 hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan">
+              View repository
+              <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+            </a>
+          </article>
+
+          <article class="project-card reveal rounded-lg p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">04 - Operations system</p>
+                <h3 class="mt-4 font-display text-3xl font-semibold text-paper">GreenShield</h3>
+              </div>
+              <i data-lucide="database" class="h-6 w-6 text-ember"></i>
+            </div>
+            <p class="mt-5 text-sm leading-7 text-white/66">An inventory and post-harvest loss management system for perishable goods, designed around real-time stock visibility, product condition tracking, and database-backed decisions for reducing loss across the supply chain.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">DBMS</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Inventory logic</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Post-harvest tracking</span>
+            </div>
+            <a href="https://github.com/Shafayat-Fahim/GreenShield" target="_blank" rel="noreferrer" class="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/12 px-4 py-2 text-sm font-semibold text-white outline-none transition-colors hover:border-ember/60 hover:text-ember focus-visible:ring-2 focus-visible:ring-ember">
+              Repository from CV
+              <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+            </a>
+          </article>
+
+          <article class="project-card reveal rounded-lg p-6 md:col-span-2">
+            <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+              <div>
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan">05 - Assessment integrity</p>
+                    <h3 class="mt-4 font-display text-3xl font-semibold text-paper">AssessNova AI</h3>
+                  </div>
+                  <i data-lucide="shield-check" class="h-6 w-6 text-cyan"></i>
+                </div>
+                <p class="mt-5 text-sm leading-7 text-white/66">A full-stack academic assessment platform with role-based dashboards for students, professors, and admins, plus a companion Electron desktop monitor for Windows assessment sessions.</p>
+                <a href="https://github.com/Rifat21c/defense-" target="_blank" rel="noreferrer" class="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/12 px-4 py-2 text-sm font-semibold text-white outline-none transition-colors hover:border-cyan/50 hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan">
+                  View repository
+                  <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+                </a>
+              </div>
+              <div>
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-white/42">System signals</p>
+                <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div class="rounded-md border border-white/10 bg-white/[0.04] p-4">
+                    <p class="font-mono text-xs uppercase tracking-[0.18em] text-cyan">Platform</p>
+                    <p class="mt-2 text-sm leading-6 text-white/72">Next.js, React, TypeScript, Tailwind CSS, Supabase-ready schema, and local JSON fallback storage.</p>
+                  </div>
+                  <div class="rounded-md border border-white/10 bg-white/[0.04] p-4">
+                    <p class="font-mono text-xs uppercase tracking-[0.18em] text-lime">Monitor</p>
+                    <p class="mt-2 text-sm leading-6 text-white/72">Electron client reports tab switches, focus loss, fullscreen exits, copy/paste, inactivity, and monitor events.</p>
+                  </div>
+                  <div class="rounded-md border border-white/10 bg-white/[0.04] p-4">
+                    <p class="font-mono text-xs uppercase tracking-[0.18em] text-ember">Risk engine</p>
+                    <p class="mt-2 text-sm leading-6 text-white/72">Integrity scoring ranges from low to high risk, with auto-submit commands after threshold breach.</p>
+                  </div>
+                  <div class="rounded-md border border-white/10 bg-white/[0.04] p-4">
+                    <p class="font-mono text-xs uppercase tracking-[0.18em] text-cyan">Analytics</p>
+                    <p class="mt-2 text-sm leading-6 text-white/72">Quiz workflow, AI feedback hooks, results, weak-topic analytics, and suspicious activity timelines.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal rounded-lg p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-lime">06 - OOP operations</p>
+                <h3 class="mt-4 font-display text-3xl font-semibold text-paper">Car Manufacturing Company</h3>
+              </div>
+              <i data-lucide="factory" class="h-6 w-6 text-lime"></i>
+            </div>
+            <p class="mt-5 text-sm leading-7 text-white/66">A Java OOP and JavaFX/FXML application for car manufacturing workflows. The codebase models multi-role operations across customer orders, supply chain, inventory, production management, HR, training, delivery history, and employee directories.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Java</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">JavaFX/FXML</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">OOP roles</span>
+            </div>
+            <a href="https://github.com/SRBshakib/OOP-Project-for-Car-Manufecturing-Company" target="_blank" rel="noreferrer" class="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/12 px-4 py-2 text-sm font-semibold text-white outline-none transition-colors hover:border-lime/50 hover:text-lime focus-visible:ring-2 focus-visible:ring-lime">
+              View repository
+              <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+            </a>
+          </article>
+
+          <article class="project-card reveal rounded-lg p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan">07 - Mobile interface</p>
+                <h3 class="mt-4 font-display text-3xl font-semibold text-paper">Weather UI Fig</h3>
+              </div>
+              <i data-lucide="cloud-sun" class="h-6 w-6 text-cyan"></i>
+            </div>
+            <p class="mt-5 text-sm leading-7 text-white/66">A Flutter weather interface prototype using Dart, Material UI, Google Fonts, custom image assets, a seven-day forecast carousel, air quality status, sunrise details, UV index, and a polished gradient mobile layout.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Flutter</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Dart</span>
+              <span class="skill-chip rounded-full px-3 py-1 text-xs text-white/72">Mobile UI</span>
+            </div>
+            <a href="https://github.com/Rifat21c/weatheruifig" target="_blank" rel="noreferrer" class="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/12 px-4 py-2 text-sm font-semibold text-white outline-none transition-colors hover:border-cyan/50 hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan">
+              View repository
+              <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="border-t border-white/10 px-5 py-24 sm:px-8 lg:px-10">
+      <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div class="reveal">
+          <p class="font-mono text-xs uppercase tracking-[0.28em] text-cyan">Technical range</p>
+          <h2 class="mt-4 font-display text-4xl font-semibold tracking-[-0.03em] text-paper sm:text-6xl">A stack map for shipping durable interfaces.</h2>
+          <p class="mt-6 text-sm leading-7 text-white/62">The portfolio direction is software developer first: full-stack delivery, accessibility thinking, real databases, and enough AI/ML literacy to prototype useful systems.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="hud-panel reveal rounded-lg p-6">
+            <i data-lucide="layout-template" class="h-5 w-5 text-cyan"></i>
+            <h3 class="mt-5 text-xl font-semibold text-paper">Frontend</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">HTML5, CSS3, JavaScript, React, Next.js, Tailwind CSS, responsive UI systems, and interaction polish.</p>
+          </div>
+          <div class="hud-panel reveal rounded-lg p-6">
+            <i data-lucide="server" class="h-5 w-5 text-lime"></i>
+            <h3 class="mt-5 text-xl font-semibold text-paper">Backend</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">Node.js, PHP, FastAPI, API design, authentication flows, and practical server-side application logic.</p>
+          </div>
+          <div class="hud-panel reveal rounded-lg p-6">
+            <i data-lucide="database-zap" class="h-5 w-5 text-ember"></i>
+            <h3 class="mt-5 text-xl font-semibold text-paper">Data</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">MySQL, PostgreSQL, Supabase, SQLAlchemy, database management, and persistence for real product flows.</p>
+          </div>
+          <div class="hud-panel reveal rounded-lg p-6">
+            <i data-lucide="shield-check" class="h-5 w-5 text-cyan"></i>
+            <h3 class="mt-5 text-xl font-semibold text-paper">UX and AI</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">Accessibility principles, user-centered design, Python, scikit-learn, prompt engineering, and emerging technology exploration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="border-t border-white/10 px-5 py-24 sm:px-8 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal max-w-3xl">
+          <p class="font-mono text-xs uppercase tracking-[0.28em] text-lime">Trajectory</p>
+          <h2 class="mt-4 font-display text-4xl font-semibold tracking-[-0.03em] text-paper sm:text-6xl">Engineering with a communications spine.</h2>
+        </div>
+
+        <div class="mt-12 grid gap-4 lg:grid-cols-3">
+          <article class="hud-panel reveal rounded-lg p-6">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan">Education</p>
+            <h3 class="mt-4 text-2xl font-semibold text-paper">Independent University, Bangladesh</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">B.Sc. Computer Science, Minor in Communications. Coursework in data structures, algorithms, database management, web development, and interactive media.</p>
+            <p class="mt-5 font-mono text-xs uppercase tracking-[0.18em] text-white/42">Jan 2022 - May 2026</p>
+          </article>
+
+          <article class="hud-panel reveal rounded-lg p-6 lg:col-span-2">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-lime">Experience</p>
+            <h3 class="mt-4 text-2xl font-semibold text-paper">Project Coordinator Intern - AIMS Lab, IRIIC, UIU</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">Coordinated interdisciplinary project work, supported proposals, tenders, budgets, records, reports, presentations, and meeting follow-through while keeping teams aligned with documentation frameworks.</p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-3">
+              <div class="rounded-md border border-white/10 bg-white/[0.04] p-4">
+                <p class="font-mono text-xs uppercase tracking-[0.18em] text-white/42">Mode</p>
+                <p class="mt-2 text-sm text-white/78">Cross-functional coordination</p>
+              </div>
+              <div class="rounded-md border border-white/10 bg-white/[0.04] p-4">
+                <p class="font-mono text-xs uppercase tracking-[0.18em] text-white/42">Output</p>
+                <p class="mt-2 text-sm text-white/78">Reports and presentations</p>
+              </div>
+              <div class="rounded-md border border-white/10 bg-white/[0.04] p-4">
+                <p class="font-mono text-xs uppercase tracking-[0.18em] text-white/42">Window</p>
+                <p class="mt-2 text-sm text-white/78">Feb 2026 - May 2026</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-4 grid gap-4 md:grid-cols-3">
+          <div class="project-card reveal rounded-lg p-6">
+            <i data-lucide="award" class="h-5 w-5 text-cyan"></i>
+            <h3 class="mt-5 text-xl font-semibold text-paper">Cisco CCNA</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">Introduction to Networks, 2024.</p>
+          </div>
+          <div class="project-card reveal rounded-lg p-6">
+            <i data-lucide="sparkles" class="h-5 w-5 text-lime"></i>
+            <h3 class="mt-5 text-xl font-semibold text-paper">AI+ Prompt Engineer</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">Level 1 credential from AgentX, 2025.</p>
+          </div>
+          <div class="project-card reveal rounded-lg p-6">
+            <i data-lucide="users" class="h-5 w-5 text-ember"></i>
+            <h3 class="mt-5 text-xl font-semibold text-paper">Hackathon Operations</h3>
+            <p class="mt-3 text-sm leading-7 text-white/62">Organized Harvard Health Systems Innovation Lab Hackathon 2026 at UIU.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="border-t border-white/10 px-5 py-24 sm:px-8 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="hud-panel reveal rounded-lg p-6 sm:p-10">
+          <div class="grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+            <div>
+              <p class="font-mono text-xs uppercase tracking-[0.28em] text-cyan">Contact channel</p>
+              <h2 class="mt-4 max-w-3xl font-display text-4xl font-semibold tracking-[-0.03em] text-paper sm:text-6xl">Available for software developer roles and product-minded engineering work.</h2>
+              <p class="mt-6 max-w-2xl text-sm leading-7 text-white/62">Career interests: full-stack web development, software engineering, accessibility and UX engineering, blockchain, emerging tech, and corporate technology roles.</p>
+            </div>
+            <div class="grid gap-3">
+              <a href="mailto:ra269432@gmail.com" class="inline-flex cursor-pointer items-center justify-between gap-4 rounded-md border border-white/12 bg-white/[0.04] px-4 py-4 text-sm font-semibold text-white outline-none transition-colors hover:border-cyan/50 hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan">
+                <span class="inline-flex items-center gap-3"><i data-lucide="mail" class="h-4 w-4"></i>ra269432@gmail.com</span>
+                <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+              </a>
+              <a href="tel:+8801734687272" class="inline-flex cursor-pointer items-center justify-between gap-4 rounded-md border border-white/12 bg-white/[0.04] px-4 py-4 text-sm font-semibold text-white outline-none transition-colors hover:border-lime/50 hover:text-lime focus-visible:ring-2 focus-visible:ring-lime">
+                <span class="inline-flex items-center gap-3"><i data-lucide="phone" class="h-4 w-4"></i>+880 1734 687272</span>
+                <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+              </a>
+              <a href="https://github.com/Rifat21c" target="_blank" rel="noreferrer" class="inline-flex cursor-pointer items-center justify-between gap-4 rounded-md border border-white/12 bg-white/[0.04] px-4 py-4 text-sm font-semibold text-white outline-none transition-colors hover:border-cyan/50 hover:text-cyan focus-visible:ring-2 focus-visible:ring-cyan">
+                <span class="inline-flex items-center gap-3"><i data-lucide="github" class="h-4 w-4"></i>github.com/Rifat21c</span>
+                <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/md-rifat-zaman-khan-9290063a0/" target="_blank" rel="noreferrer" class="inline-flex cursor-pointer items-center justify-between gap-4 rounded-md border border-white/12 bg-white/[0.04] px-4 py-4 text-sm font-semibold text-white outline-none transition-colors hover:border-lime/50 hover:text-lime focus-visible:ring-2 focus-visible:ring-lime">
+                <span class="inline-flex items-center gap-3"><i data-lucide="linkedin" class="h-4 w-4"></i>LinkedIn profile</span>
+                <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+              </a>
+              <p class="inline-flex items-center gap-3 rounded-md border border-white/12 bg-white/[0.04] px-4 py-4 text-sm font-semibold text-white/70">
+                <i data-lucide="map-pin" class="h-4 w-4"></i>Dhaka, Bangladesh
+              </p>
+            </div>
+          </div>
+        </div>
+        <footer class="flex flex-col justify-between gap-4 py-8 text-xs uppercase tracking-[0.18em] text-white/38 sm:flex-row">
+          <p>MD. Rifat Zaman Khan</p>
+          <p>Designed for clarity, accessibility, and fast static delivery.</p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (window.lucide) {
+      window.lucide.createIcons({
+        attrs: {
+          "stroke-width": 1.8
+        }
+      });
+    }
+
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+
+      document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+    } else {
+      document.querySelectorAll(".reveal").forEach((node) => node.classList.add("is-visible"));
+    }
+  </script>
+</body>
+</html>
